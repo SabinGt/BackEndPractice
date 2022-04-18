@@ -9,7 +9,7 @@ const app = express();
 //routing
 app.use('/Users',userRoute);
 
-//database connection 
+//database connection
 databaseConnection();
 
 app.listen(PORT , ()=>{
