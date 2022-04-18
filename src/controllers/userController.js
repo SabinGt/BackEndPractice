@@ -1,5 +1,6 @@
 const postUser = (req, res) => {
-  res.status.json("Single user data inserted successfully");
+
+  res.status(200).json("Single user data inserted successfully");
 };
 
 const getUsers = (req, res) => {
