@@ -9,6 +9,9 @@ const app = express();
 //routing
 app.use('/Users',userRoute);
 
+//database connection
+databaseConnection();
+
 app.listen(PORT , ()=>{
     console.log("sever is running on" + PORT)
 })
