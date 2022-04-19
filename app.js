@@ -12,7 +12,7 @@ app.use(express.json());
 //routing
 app.use('/user',userRoute);
 
-//database connection 
+//database connection
 databaseConnection();
 
 app.listen(PORT , ()=>{
