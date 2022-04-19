@@ -6,8 +6,11 @@ const userRoute = require('./src/routes/userRoute');
 const databaseConnection = require('./src/config/config');
 const app = express();
 
+//middleware
+app.use(express.json());
+
 //routing
-app.use('/Users',userRoute);
+app.use('/user',userRoute);
 
 //database connection
 databaseConnection();
