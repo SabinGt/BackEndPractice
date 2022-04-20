@@ -1,7 +1,10 @@
 // const mongoose = require("mongoose");
 // const UserModel = require("../models/userModel");
 import mongoose from "mongoose";
-import Contact from '../models/contact.model.js'
+
+import db from '../models/index.js'
+const Contact = db.contact;
+ dev
 //add the contact user
 const postContactUser = async (req, res) => {
   let contactUser = new Contact({
