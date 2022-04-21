@@ -16,22 +16,20 @@ const usernameAndEmailChecker = (req, res, next) => {
       return;
     }
     User.findOne({
-      email:req.body.email
-    }).exec((err, user)=>{
-      if(err){
-        res.status(500).send({message:err});
+      email: req.body.email,
+    }).exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
         return;
       }
-      if(user){
-        res.status(400).send({message:"Email already in used"});
+      if (user) {
+        res.status(400).send({ message: "Email already in used" });
         return;
       }
       next();
     });
-    
   });
 };
-
 
 const checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {

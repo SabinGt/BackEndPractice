@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import db from '../models/index.js'
+import db from "../models/index.js";
 const Contact = db.contact;
 //add the contact user
 const postContactUser = async (req, res) => {
