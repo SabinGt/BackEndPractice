@@ -13,6 +13,10 @@ const Contact = mongoose.model(
     message: {
       type: String,
     },
+    status:{
+      type: Boolean,
+      default : false
+    }
   })
 );
 

@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import db from "../models/index.js";
 const Contact = db.contact;
+import { sendMail } from "../helper/sendMail.js";
+
 //add the contact user
 const postContactUser = async (req, res) => {
   let contactUser = new Contact({
@@ -12,9 +14,19 @@ const postContactUser = async (req, res) => {
   try {
     const User = await contactUser.save();
     if (!User) {
-      throw new Error("error");
+      res.status(500).send({
+        message:"Server error"
+      });
     }
-    res.status(200).send(User);
+    if(sendMail(User.email)){
+      const updateduser = await Contact.findByIdAndUpdate(
+        User._id,
+        {status: true},
+        { new: true }
+      )
+      res.status(200).send(updateduser);
+    }
+    
   } catch (err) {
     res.status(400).json({
       success: false,
