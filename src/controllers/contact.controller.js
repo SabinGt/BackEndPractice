@@ -18,8 +18,15 @@ const postContactUser = async (req, res) => {
         message:"Server error"
       });
     }
-     sendMail(User.email)
-    res.status(200).send(User);
+    if(sendMail(User.email)){
+      const updateduser = await Contact.findByIdAndUpdate(
+        User._id,
+        {status: true},
+        { new: true }
+      )
+      res.status(200).send(updateduser);
+    }
+    
   } catch (err) {
     res.status(400).json({
       success: false,
