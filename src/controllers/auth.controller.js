@@ -3,17 +3,15 @@ import dotenv from "dotenv";
 dotenv.config();
 import bcrypt from "bcryptjs";
 import db from "../models/index.js";
+import hashing from "../utils/hashing.js";
 const User = db.user;
 const Role = db.role;
 const secret = process.env.SECRET_KEY;
 const signUp = (req, res) => {
-  console.log(req.body.email);
-  console.log(req.body.username);
-  console.log(req.body.roles);
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 10),
+    password: hashing.passwordHashing(req.body.password),
   });
 
   user.save((err, user) => {
@@ -59,7 +57,7 @@ const signIn = (req, res) => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
       }
-      var passwordIsValid = bcrypt.compareSync(
+      var passwordIsValid = hashing.passwordComparing(
         req.body.password,
         user.password
       );
