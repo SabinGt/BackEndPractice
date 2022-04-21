@@ -1,5 +1,3 @@
-// const mongoose = require("mongoose");
-// const UserModel = require("../models/userModel");
 import mongoose from "mongoose";
 import db from '../models/index.js'
 const Contact = db.contact;

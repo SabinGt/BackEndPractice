@@ -1,11 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import db from "../models/index.js";
-
 const Role = db.role;
-// const { default: mongoose } = require("mongoose");
-// const dotenv = require("dotenv");
-
 dotenv.config();
 // console.log(process.env.CONNECTION_STRING_ATLAS)
 export const databaseConnection = () => {
