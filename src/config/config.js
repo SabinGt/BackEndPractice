@@ -1,13 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 import db from "../models/index.js";
-
 const Role = db.role;
-
-// const { default: mongoose } = require("mongoose");
-// const dotenv = require("dotenv");
-
 dotenv.config();
 // console.log(process.env.CONNECTION_STRING_ATLAS)
 export const databaseConnection = () => {
@@ -15,15 +9,12 @@ export const databaseConnection = () => {
     .connect(process.env.CONNECTION_STRING_ATLAS)
     .then(() => {
       console.log("Database Connection has been made");
-ler
       initial();
-
     })
     .catch((err) => {
       console.log("err");
     });
 };
-
 
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
@@ -55,4 +46,3 @@ function initial() {
     }
   });
 }
-
