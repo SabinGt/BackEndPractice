@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import db from "../models/index.js";
 const Contact = db.contact;
-
+import { sendMail } from "../helper/sendMail.js";
 
 //add the contact user
 const postContactUser = async (req, res) => {
@@ -18,7 +18,7 @@ const postContactUser = async (req, res) => {
         message:"Server error"
       });
     }
-     
+     sendMail(User.email)
     res.status(200).send(User);
   } catch (err) {
     res.status(400).json({
