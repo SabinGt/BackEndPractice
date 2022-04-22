@@ -16,6 +16,10 @@ const Contact = mongoose.model(
     status:{
       type: Boolean,
       default : false
+    },
+    isDelete:{
+      type :Boolean,
+      default:false
     }
   })
 );

@@ -11,7 +11,7 @@ const Project = mongoose.model(
         link:{
             type: String
         }
-    })
+    }) 
 )
 
 export default Project
