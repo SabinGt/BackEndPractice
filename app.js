@@ -4,6 +4,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 import contactRoute from "./src/routes/contact.route.js";
 import authRoute from "./src/routes/auth.routh.js"
+import gituhubRoute from "./src/routes/project.route.js"
 import { databaseConnection } from "./src/config/config.js";
 const app = express();
 //middleware
@@ -14,6 +15,9 @@ app.use("/user/auth", authRoute)
 
 //user contact routing
 app.use("/user/contact", contactRoute);
+
+//project routing
+app.use("/user/project", gituhubRoute)
 
 //database connection
 databaseConnection();
