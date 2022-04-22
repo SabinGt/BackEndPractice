@@ -11,7 +11,7 @@ const postGithubData = async (req, res)=>{
            name:projects.name,
            description:projects.description,
            dataCreated: new Date(projects.created_at).toDateString(),
-           link:projects.html_urls
+           link:projects.html_url
 
         }))
         return res.send(projectDetails)
