@@ -2,7 +2,8 @@
 Portfolio Backend App
 This is a server app project for susanofolio, created using nodejs,expressjs and mongoose.
 
-Packages Used
+## Packages Used
+```
 "dependencies"
  "axios",
  "bcrypt"
@@ -16,3 +17,4 @@ Packages Used
     "dotenv"
     "nodemon"
   }
+```
