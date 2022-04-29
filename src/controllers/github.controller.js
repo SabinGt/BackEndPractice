@@ -6,7 +6,7 @@ const Projects = db.project;
 //add to database 
 const postGithubData = async (req, res)=>{
     try{
-        const projects = await axios.get("https://api.github.com/users/SabinGt/repos?per_page=6");
+        const projects = await axios.get("https://api.github.com/users/SabinGt/repos?per_page=3");
         const projectDetails = projects.data.map((projects)=>({
            name:projects.name,
            description:projects.description,

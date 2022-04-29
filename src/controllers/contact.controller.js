@@ -38,7 +38,8 @@ const postContactUser = async (req, res) => {
 //get all the contact user
 const getContactUsers = async (req, res) => {
   try {
-    const contactUser = await Contact.find();
+    const contactUser = await Contact.find({isDelete:false});
+    console.log(contactUser)
     if (!contactUser) {
       throw new Error("err");
     }
@@ -54,7 +55,9 @@ const getContactUsers = async (req, res) => {
 //get single contact user
 const getSingleContactUser = async (req, res) => {
   try {
-    const singleContactUser = await Contact.findById(req.params.id);
+    const singleContactUser = await Contact.findOne({
+      $and:[{_id:req.params.id},{isDelete:false}]
+    }).select("-isDelete");
 
     if (!singleContactUser) {
       throw new Error("no user");
@@ -71,8 +74,9 @@ const getSingleContactUser = async (req, res) => {
 //delete single contact user
 const deleteSingleContactUser = async (req, res) => {
   try {
-    const deleteSingleContactUser = await Contact.findByIdAndRemove(
-      req.params.id
+    const deleteSingleContactUser = await Contact.findByIdAndUpdate(
+      req.params.id,
+        {isDelete: true}
     );
     if (!deleteSingleContactUser) {
       throw new Error("error");
