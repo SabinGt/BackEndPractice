@@ -1,6 +1,5 @@
 # BackEndPractice
-Portfolio Backend App
-This is a backebd for the my portfolio. It uses Nodejs, express and Mongodb as Database.
+Tis project is build using Nodejs and express framework.
 
 ## Packages Used
 
@@ -13,4 +12,11 @@ This is a backebd for the my portfolio. It uses Nodejs, express and Mongodb as D
 * "mongoose"
 * "nodemailer"
  
+## Run project 
+* npm install 
+* npm start
 
+## Features
+* Authentication using JWT
+* Role based authorization 
+* Implementaion of nodemailer
