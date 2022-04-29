@@ -1,6 +1,6 @@
 # BackEndPractice
 Portfolio Backend App
-This is a backebd for the my portfolio. 
+This is a backebd for the my portfolio. It uses Nodejs, express and Mongodb as Database.
 
 ## Packages Used
 ```
