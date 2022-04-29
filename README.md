@@ -1,6 +1,6 @@
 # BackEndPractice
 Portfolio Backend App
-This is a server app project for susanofolio, created using nodejs,expressjs and mongoose.
+This is a backebd for the my portfolio. 
 
 ## Packages Used
 ```
@@ -18,3 +18,4 @@ This is a server app project for susanofolio, created using nodejs,expressjs and
     "nodemon"
   }
 ```
+
