@@ -1,32 +1,33 @@
 import mongoose from "mongoose";
 import db from "../models/index.js";
 const Contact = db.contact;
-import { sendMail } from "../helper/sendMail.js";
+import { sendAdminMail, sendUserMail } from "../helper/sendMail.js";
 
 //add the contact user
 const postContactUser = async (req, res) => {
+  let { name, email, message } = req.body;
   let contactUser = new Contact({
-    name: req.body.name,
-    email: req.body.email,
-    message: req.body.message,
+    name: name,
+    email: email,
+    message: message,
   });
 
   try {
     const User = await contactUser.save();
+
     if (!User) {
       res.status(500).send({
-        message:"Server error"
+        message: "Server error",
       });
     }
-    if(sendMail(User.email)){
+    if (sendAdminMail(name, email, message) && sendUserMail(email, name)) {
       const updateduser = await Contact.findByIdAndUpdate(
         User._id,
-        {status: true},
+        { status: true },
         { new: true }
-      )
+      );
       res.status(200).send(updateduser);
     }
-    
   } catch (err) {
     res.status(400).json({
       success: false,
@@ -38,8 +39,8 @@ const postContactUser = async (req, res) => {
 //get all the contact user
 const getContactUsers = async (req, res) => {
   try {
-    const contactUser = await Contact.find({isDelete:false});
-    console.log(contactUser)
+    const contactUser = await Contact.find({ isDelete: false });
+    console.log(contactUser);
     if (!contactUser) {
       throw new Error("err");
     }
@@ -56,7 +57,7 @@ const getContactUsers = async (req, res) => {
 const getSingleContactUser = async (req, res) => {
   try {
     const singleContactUser = await Contact.findOne({
-      $and:[{_id:req.params.id},{isDelete:false}]
+      $and: [{ _id: req.params.id }, { isDelete: false }],
     }).select("-isDelete");
 
     if (!singleContactUser) {
@@ -76,7 +77,7 @@ const deleteSingleContactUser = async (req, res) => {
   try {
     const deleteSingleContactUser = await Contact.findByIdAndUpdate(
       req.params.id,
-        {isDelete: true}
+      { isDelete: true }
     );
     if (!deleteSingleContactUser) {
       throw new Error("error");
